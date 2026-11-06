@@ -1,0 +1,64 @@
+
+# Account PIN Security Program
+
+# Step 1: Create the Account class
+class Account:
+
+    # Step 2: Initialize account details
+    def __init__(self, owner_name, starting_pin):
+        self.owner = owner_name
+        self.__pin = starting_pin
+
+    # Step 3: Display account information safely
+    def show_pin_status(self):
+        print("Account Name:", self.owner)
+        print("Your PIN is stored securely.")
+
+    def check_pin(self, entered_pin):
+        if entered_pin == self.__pin:
+            print("Correct PIN! Login successful.")
+        else:
+            print("Incorrect PIN! Access denied.")
+
+    # Step 4: Safely change the PIN
+    def set_pin(self, new_pin):
+        if len(new_pin) == 4 and new_pin.isdigit():
+            self.__pin = new_pin
+            print("Your PIN has been changed successfully.")
+        else:
+            print("Error: Please enter a valid 4-digit PIN.")
+
+    # Step 5: String representation of the object
+    def __str__(self):
+        return "Account belongs to " + self.owner
+
+
+# Step 6: Create an account object
+my_account = Account("Vedant", "1234")
+
+# Display account details
+print(my_account)
+
+# Step 7: Display PIN storage status
+my_account.show_pin_status()
+
+# Step 8: Try changing the private PIN directly
+my_account.__pin = "9999"
+print("\nAttempting to change PIN directly...")
+
+# Check whether the original PIN has changed
+my_account.check_pin("9999")
+my_account.check_pin("1234")
+
+# Step 9: Update PIN using the setter method
+print("\nUpdating PIN using the setter method...")
+my_account.set_pin("9999")
+
+# Verify the updated PIN
+print("\nChecking the new PIN:")
+my_account.check_pin("9999")
+
+# Test invalid PIN values
+print("\nTesting invalid PIN values:")
+my_account.set_pin("99")
+my_account.set_pin("abcd")
